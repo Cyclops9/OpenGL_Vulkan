@@ -159,8 +159,7 @@ void processInput(GLFWwindow* window);
 void RenderText(Shader& shader, std::string text, float x, float y, float scale, glm::vec4 color);
 
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+
 
 /// Holds all state information relevant to a character as loaded using FreeType
 struct Character {
@@ -176,16 +175,18 @@ unsigned int VAO, VBO;
 
 void Circle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius, GLint numberOfSides);
 class OpenGL {
-
+	
 public:
 	OpenGL();
 	~OpenGL();
 	void drawTriangle(float[], unsigned int);
 	void drawRectangle(float[], unsigned int[], unsigned int, unsigned int);
-	void drawLine(float[], unsigned int, unsigned int);
+	void drawLine(float[], unsigned int, float);
 	void drawText(const char*){}
 	void drawCircle(float xPos, float yPos, float radius, float* color);
 	void drawText(std::string, unsigned int length, float xPos, float yPos, float scale,float* color);
+	unsigned int SCR_WIDTH;
+	unsigned int SCR_HEIGHT;
 };
 
 OpenGL::OpenGL() {
@@ -199,7 +200,7 @@ void OpenGL::drawTriangle(float vertices[], unsigned int size) {
 	
 	glfwInit();
 	GLFWwindow* window;
-	window = glfwCreateWindow(900, 480, "My Window", NULL, NULL);
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "My Window", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glewInit();
 	const char* vs1 = vs.c_str();
@@ -290,7 +291,7 @@ void OpenGL::drawRectangle(float vertices[], unsigned int indices[], unsigned in
 
 	glfwInit();
 	GLFWwindow* window;
-	window = glfwCreateWindow(900, 480, "My Window", NULL, NULL);
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "My Window", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glewInit();
 	const char* vs1 = vs.c_str();
@@ -339,11 +340,11 @@ void OpenGL::drawRectangle(float vertices[], unsigned int indices[], unsigned in
 }
 
 
-void OpenGL::drawLine(float vertices[], unsigned int size, unsigned int lineWidth) {
+void OpenGL::drawLine(float vertices[], unsigned int size, float lineWidth) {
 
 	glfwInit();
 	GLFWwindow* window;
-	window = glfwCreateWindow(900, 480, "My Window", NULL, NULL);
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "My Window", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glewInit();
 	const char* vs1 = vs.c_str();
@@ -440,7 +441,7 @@ void OpenGL::drawCircle(float xPos, float yPos, float radius, float* color)
 	glfwInit();
 
 	// Create a windowed mode window and its OpenGL context
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Hello World", NULL, NULL);
 
 
 	// Make the window's context current

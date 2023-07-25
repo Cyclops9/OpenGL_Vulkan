@@ -53,7 +53,7 @@ std::vector<Vertex> vertices2 = {
 	{{-0.5f,-0.5f,0,1},{1.0f,0.0f,0.0f,1}},
 	{{0.5f,-0.5f,0,1},{1.0f,1.0f,1.0f,1}},
 	{{0.5f,0.5f,0,1},{0.0f,0.0f,1.0f,1}},
-	{{-0.7f,0.5f,0,1},{0.0f,0.0f,1.0f,1}},
+	{{-0.5f,0.5f,0,1},{0.0f,0.0f,1.0f,1}},
 };
 vector<unsigned int> indices2 = { 0,1,2,2,3,0 };
 
@@ -77,7 +77,7 @@ const std::vector<Vertex> lineVertices = {
 int main() {
 
 	try {
-		Application app;
+		Application app(640,480);
 		//OpenGl drawTriangle(floatArray, arraySize)
 		//app.GLdrawTriangle(vertexData, sizeof(vertexData)/sizeof(float));
 		
@@ -91,7 +91,7 @@ int main() {
 		//app.VKdrawTriangle(vertices, vertices.size());
 		
 		// Vulkan drawRectangle
-		// app.VKdrawRectangle(vertices2, indices2, vertices2.size());
+		 app.VKdrawRectangle(vertices2, indices2, vertices2.size());
 		
 		// Vulkan drawLine
 		//app.VKdrawLine(lineVertices, lineVertices.size(),5);

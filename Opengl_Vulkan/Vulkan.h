@@ -22,7 +22,7 @@ using namespace std;
 const std::vector<const char*> deviceExtensions = { VK_KHR_SWAPCHAIN_EXTENSION_NAME };
 
 const std::vector<const char*> validationLayers = { "VK_LAYER_KHRONOS_validation" };
-#ifdef NDEBUG
+#ifndef NDEBUG
 const bool enableValidationLayers = false;
 #else
 const bool enableValidationLayers = true;
@@ -51,8 +51,7 @@ void destroyDebugUtilsMessengerEXT(VkInstance instance, VkDebugUtilsMessengerEXT
 }
 
 const int MAX_FRAMES_IN_FLIGHT = 2;
-const unsigned int width = 640;
-const unsigned int height = 480;
+
 
 struct QueueFamilyIndices {
 	std::optional<unsigned int> graphicsFamily;
@@ -106,6 +105,8 @@ struct Vertex {
 
 class Vulkan {
 public:
+	unsigned int width;
+	unsigned int height;
 	void drawTriangle(vector<Vertex> vertices,unsigned int size) {
 		this->size = size;
 		InitWindow();
